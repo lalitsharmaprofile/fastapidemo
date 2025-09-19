@@ -1,2 +1,7 @@
+pydantic
 fastapi
-uvicorn
+uvicorn[standard]
+motor
+jinja2
+python-dotenv
+python-multipart

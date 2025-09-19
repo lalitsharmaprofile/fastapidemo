@@ -1,0 +1,55 @@
+<!-- templates/index.html -->
+<!doctype html>
+<html>
+<head>
+  <title>FastAPI Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+  <header>
+    <h1>FastAPI Notes App</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Create a Note</h2>
+      <form method="post" action="/notes">
+        <label>
+          Title:<br>
+          <input type="text" name="title" required maxlength="200">
+        </label>
+        <br><br>
+        <label>
+          Content:<br>
+          <textarea name="content" rows="5" cols="60" required></textarea>
+        </label>
+        <br><br>
+        <button type="submit">Add Note</button>
+      </form>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Notes</h2>
+      {% if notes %}
+        <ul>
+         {% for note in notes %}
+          <li>
+            <strong>{{ note.title }}</strong>
+            <em> — {{ note.created_at.strftime("%Y-%m-%d %H:%M") }}</em>
+            <div>{{ note.content }}</div>
+          </li>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>No notes yet — add your first note above.</p>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>
+    <small>Built with FastAPI + MongoDB</small>
+  </footer>
+</body>
+</html>
